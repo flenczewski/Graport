@@ -1,4 +1,4 @@
-GRaport
+GRaport - Sprawdź pozycję swojej strony w google
 =======
 
-GRaport 4
+Wersja: 4 (beta)
