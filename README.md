@@ -1,8 +1,15 @@
 GRaport
 =======
 
-GRaport - Sprawdź pozycję swojej strony w google
-
-Wersja: 4 (beta)
+GRaport - Check your website position in Google SEPR
+Version: 4 (beta)
 
 Prev (working) version at http://graport.info/
+
+
+Example
+=======
+```php
+$graport = new Graport();
+$graport->getPosition('graport.info', 'graport');
+```
