@@ -14,8 +14,14 @@ class Graport
      */
     public $dataCenter;
     
+    /**
+     *  Language
+     */
+    public $lang;
+
     function __construct() {
         $this->dataCenter = 'www.google.pl';
+        $this->lang = 'pl';
     }
 
 
@@ -47,14 +53,18 @@ class Graport
      * Prepare URL address
      *
      * @param string $query      - keywords
-     * @param string $lang       - language
      * @param int    $num        - number of results on one page (pack size)
      * @param int 	 $start		 - start position
      *
      * @return string url
      */
-    public function queryUrl( $query, $lang = 'pl', $num = 10, $start = 0) {
-        return 'http://'. $this->dataCenter .'/search?num='. $num .'&hl='. $lang .'&q='. urlencode($query) .'&lr=' . $lang . '&start=' . $start;
+    public function queryUrl( $query, $num = 10, $start = 0) {
+        return 'http://'. $this->dataCenter
+                    .'/search?num='. $num
+                    .'&hl='. $this->lang
+                    .'&q='. urlencode($query)
+                    .'&lr=' . $this->lang 
+                    .'&start=' . $start;
     }
 
 }
