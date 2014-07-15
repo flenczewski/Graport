@@ -52,5 +52,10 @@ class GraportTest extends PHPUnit_Framework_TestCase {
         $this->assertGreaterThanOrEqual(0, intval($query['start']));
         $this->assertEquals($start, intval($query['start']));
     }
+
+    public function testGetGoogleResult()
+    {
+        $this->assertEquals(1, $this->graport->getPosition('graport.info', 'graport.info'));
+    }
 }
  

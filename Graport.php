@@ -1,7 +1,7 @@
 <?php
 
 /**
- *
+ * Check your website position in Google SERP
  * 
  * @author  Fabian Lenczewski <fabian.lenczewski@gmail.com>
  * @since   2014-07-10
@@ -12,22 +12,78 @@ class Graport
     /**
      *  Google DC
      */
-    public $dataCenter;
+    public $dataCenter = 'www.google.pl';
     
     /**
      *  Language
      */
-    public $lang;
+    public $lang = 'pl';
+
+    /**
+     *  SERP packsize on one page
+     */
+    public $packSize = 10;
+
+    /**
+     *  SERP pages
+     */
+    public $pages = 10;
+
+    /**
+     * @var string
+     */
+    private $_positionPattern = '/<h3 class="r"><a href="([^"]+)"/';
 
     function __construct() {
-        $this->dataCenter = 'www.google.pl';
-        $this->lang = 'pl';
     }
-
 
     function __destruct() {
     }
 
+    /**
+     * Get URL position in SERP
+     *
+     * @param $url
+     * @param $keyword
+     *
+     * @return int|null
+     */
+    public function getPosition($url, $keyword)
+    {
+        $startPosition = 0;
+
+        for($pack = 0; $pack < $this->pages; $pack++) {
+
+            // prepare SERP URL
+            $queryUrl = $this->queryUrl($keyword, $this->packSize, $startPosition);
+
+            // getting data
+            $data = $this->_getGoogleResult( $queryUrl );
+
+            preg_match_all($this->_positionPattern, $data, $matches);
+            $matches = array_pop($matches);
+
+            foreach($matches as $key => $value) {
+
+                $serpRowUrl = parse_url($value);
+                parse_str($serpRowUrl['query'], $serpRowUrlParams);
+                $rowUrl = parse_url($serpRowUrlParams['q']);
+
+                if($rowUrl['host'] == $url) {
+                    $result = $startPosition + $key + 1;
+                    break;
+                }
+            }
+
+            if(isset($result)) {
+                break;
+            } else {
+                $startPosition = $this->packSize * $pack;
+            }
+        }
+
+        return isset($result) ? $result : null;
+    }
 
     /**
      * Grab Search Engine Result Page 
