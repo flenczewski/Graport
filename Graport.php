@@ -9,15 +9,17 @@
 
 class Graport
 {
-    function __construct()
-    {
-
+    /**
+     *  Google DC
+     */
+    public $dataCenter;
+    
+    function __construct() {
+        $this->dataCenter = 'www.google.pl';
     }
 
 
-    function __destruct()
-    {
-
+    function __destruct() {
     }
 
     /**
@@ -25,15 +27,13 @@ class Graport
      *
      * @param string $query      - keywords
      * @param string $lang       - language
-     * @param int    $num        - number of results on one page
+     * @param int    $num        - number of results on one page (pack size)
      * @param int 	 $start		 - start position
-     * @param string $dataCenter - google DC
      *
      * @return string url
      */
-    function queryUrl( $query, $lang = 'pl', $num = 10, $start = 0, $dataCenter = 'www.google.pl')
-    {
-        return 'http://'. $dataCenter .'/search?num='. $num .'&hl='. $lang .'&q='. urlencode($query) .'&lr=' . $lang . '&start=' . $start;
+    function queryUrl( $query, $lang = 'pl', $num = 10, $start = 0) {
+        return 'http://'. $this->dataCenter .'/search?num='. $num .'&hl='. $lang .'&q='. urlencode($query) .'&lr=' . $lang . '&start=' . $start;
     }
 
 }
