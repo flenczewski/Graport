@@ -16,7 +16,7 @@
         <ini name="memory_limit" value="1G"/>
     </php>
 
-    <testsuite name="All Mobile Detect tests">
+    <testsuite name="All Graport tests">
         <directory suffix="Test.php">./</directory>
     </testsuite>
 
