@@ -1,0 +1,15 @@
+{
+    "name": "flen/graport",
+    "description": "GRaport - Check your website position in Google SEPR",
+    "keywords": ["google","SERP","check position"],
+    "homepage": "https://github.com/flenczewski/Graport",
+    "authors": [
+        {
+            "name": "Fabian Lenczewski",
+            "email": "fabian.lenczewski@gmail.com",
+        }
+    ],
+    "autoload": {
+        "classmap":  ["/"]
+    }
+}
