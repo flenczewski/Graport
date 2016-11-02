@@ -6,7 +6,7 @@
     "authors": [
         {
             "name": "Fabian Lenczewski",
-            "email": "fabian.lenczewski@gmail.com",
+            "email": "fabian.lenczewski@gmail.com"
         }
     ],
     "autoload": {
